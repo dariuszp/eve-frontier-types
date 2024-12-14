@@ -1,4 +1,4 @@
-namespace Blockchain {
+export namespace Blockchain {
     export namespace Types {
         export enum TraitTypeEnum {
             CATEGORY_ID = "categoryID",

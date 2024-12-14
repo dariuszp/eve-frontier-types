@@ -1,8 +1,9 @@
 import axios, {type AxiosInstance, type AxiosResponse} from 'axios';
 import Blockchain from "$lib/types/blockchain";
+import config from "$lib/config";
 
 export class BlockchainApiClient {
-    private readonly baseUrl = 'https://blockchain-gateway-nova.nursery.reitnorf.com';
+    private readonly baseUrl = config.blockchainApiBaseUrl;
     private readonly client: AxiosInstance;
 
     constructor() {
