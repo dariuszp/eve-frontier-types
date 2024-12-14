@@ -1,7 +1,7 @@
 <script lang="ts">
-    import type {HTMLAttributes, HTMLButtonAttributes} from "svelte/elements";
+    import type {HTMLButtonAttributes} from "svelte/elements";
 
-    interface PropsInterface extends HTMLAttributes<HTMLButtonElement> {
+    interface PropsInterface extends HTMLButtonAttributes {
        active?: boolean;
     }
     const { children, active, ...props }: PropsInterface = $props();

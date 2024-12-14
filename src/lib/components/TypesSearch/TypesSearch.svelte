@@ -11,6 +11,7 @@
     } from "$lib/typesSearch/extractFilters";
     import CategoryFilter from "$lib/components/TypesSearch/components/CategoryFilter.svelte";
     import GroupFilter from "$lib/components/TypesSearch/components/GroupFilter.svelte";
+    import FilteredItems from "$lib/components/TypesSearch/components/FilteredItems.svelte";
 
     const CACHE_KEY = 'blockchain_types';
     let data = $state<Blockchain.Types.Response>({});
@@ -50,6 +51,10 @@
             selectedCategories.push(id);
         } else {
             delete selectedCategories[index];
+            selectedGroups = selectedGroups.filter((selectedGroupId) => {
+                const group = filters.groups.find(({ id }) => id === selectedGroupId);
+                return group && selectedCategories.includes(group.categoryId);
+            });
         }
     }
 
@@ -86,7 +91,7 @@
     <div class="grid-container">
         <div class="header"><CategoryFilter availableCategories={filters.categories} selectedCategories={selectedCategories} toggle={toggleCategory} /></div>
         <div class="left-column"><GroupFilter selectedCategories={selectedCategories} availableGroups={filters.groups} selectedGroups={selectedGroups} toggle={toggleGroup} /></div>
-        <div class="right-column">Right</div>
+        <div class="right-column"><FilteredItems selectedCategories={selectedCategories} selectedGroups={selectedGroups} items={filters.items} /></div>
     </div>
 {/if}
 
@@ -121,6 +126,6 @@
     }
 
     .right-column {
-        padding: 1rem;
+        display: grid;
     }
 </style>
