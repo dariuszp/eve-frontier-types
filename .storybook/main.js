@@ -15,6 +15,9 @@ const config = {
   "framework": {
     "name": "@storybook/sveltekit",
     "options": {}
+  },
+  "core": {
+    "builder": "@storybook/builder-vite"
   }
 };
 export default config;

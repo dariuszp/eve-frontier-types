@@ -14,16 +14,11 @@ export class BlockchainApiClient {
                 Accept: 'application/json',
             },
         });
-
-        this.client.interceptors.response.use((response: AxiosResponse) => {
-            return response.data;
-        }, (error) => {
-            console.error('API Error:', error.response?.data || error.message);
-            return Promise.reject(error.response?.data || error);
-        } );
     }
 
-    getTypes(): Promise<AxiosResponse<Blockchain.Types.Response>> {
-        return this.client.get<Blockchain.Types.Response>('/types');
+    async getTypes(): Promise<Blockchain.Types.Response> {
+        return (await this.client.get<Blockchain.Types.Response>('/types')).data;
     }
 }
+
+export default BlockchainApiClient;
