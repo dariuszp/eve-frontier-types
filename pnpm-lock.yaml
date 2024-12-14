@@ -8,6 +8,9 @@ dependencies:
   '@inlang/paraglide-sveltekit':
     specifier: ^0.11.1
     version: 0.11.5(@sveltejs/kit@2.11.0)
+  axios:
+    specifier: ^1.7.9
+    version: 1.7.9
 
 devDependencies:
   '@chromatic-com/storybook':
