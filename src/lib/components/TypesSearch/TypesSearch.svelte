@@ -12,6 +12,7 @@
     import CategoryFilter from "$lib/components/TypesSearch/components/CategoryFilter.svelte";
     import GroupFilter from "$lib/components/TypesSearch/components/GroupFilter.svelte";
     import FilteredItems from "$lib/components/TypesSearch/components/FilteredItems.svelte";
+    import config from "$lib/config";
 
     const CACHE_KEY = 'blockchain_types';
     let data = $state<Blockchain.Types.Response>({});
@@ -89,7 +90,12 @@
 
 {#if Object.keys(data).length > 0}
     <div class="grid-container">
-        <div class="header"><CategoryFilter availableCategories={filters.categories} selectedCategories={selectedCategories} toggle={toggleCategory} /></div>
+        <div class="header">
+            <small>Source: <a href={`${config.blockchainApiBaseUrl}/types`} target="_blank">{config.blockchainApiBaseUrl}/types</a></small>
+            <div>
+                <CategoryFilter availableCategories={filters.categories} selectedCategories={selectedCategories} toggle={toggleCategory} />
+            </div>
+        </div>
         <div class="left-column"><GroupFilter selectedCategories={selectedCategories} availableGroups={filters.groups} selectedGroups={selectedGroups} toggle={toggleGroup} /></div>
         <div class="right-column"><FilteredItems selectedCategories={selectedCategories} selectedGroups={selectedGroups} items={filters.items} /></div>
     </div>
@@ -106,12 +112,23 @@
 
     .header {
         display: flex;
-        flex-direction: row;
-        flex-wrap: wrap;
+        flex-direction: column;
         grid-column: span 2;
-        background-color: rgba(197, 43, 239, 0.2);
-        padding: 1rem;
-        gap: 8px;
+
+        small {
+            display: block;
+            text-align: center;
+        }
+
+        div {
+            display: flex;
+            flex-direction: row;
+            flex-wrap: wrap;
+
+            background-color: rgba(197, 43, 239, 0.2);
+            padding: 1rem;
+            gap: 8px;
+        }
     }
 
     .left-column {
