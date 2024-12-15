@@ -1,8 +1,8 @@
 <script lang="ts">
     import type {Item} from "$lib/typesSearch/extractFilters";
     import Blockchain from "$lib/types/blockchain";
-    import IdInput from "$lib/components/TypesSearch/components/IdInput.svelte";
     import Button from "$lib/components/Button/Button.svelte";
+    import ItemDetails from "$lib/components/TypesSearch/components/ItemDetails.svelte";
 
     const {
         selectedGroups,
@@ -45,15 +45,7 @@
     <div class="items">
         {#each items as item}
             {#if shouldDisplay(item)}
-                <div class="item" data-id={item.smartItemId}>
-                    <h4>{item.name}</h4>
-                    <div>
-                        {#if item.description}
-                            <p>{item.description}</p>
-                        {/if}
-                    </div>
-                    <IdInput value={item.smartItemId} />
-                </div>
+                <ItemDetails item={item} />
             {/if}
         {/each}
     </div>
@@ -74,17 +66,5 @@
         grid-template-columns: 1fr 1fr;
         grid-auto-rows: max-content;
         gap: 8px;
-    }
-
-    h4 {
-        margin: 0 0 8px 0;
-    }
-
-    .item {
-        display: grid;
-        grid-template-rows: max-content 1fr max-content;
-        background: #efefef;
-        border: 1px #222;
-        padding: 8px;
     }
 </style>

@@ -6,7 +6,7 @@
 
     function copyToClipboard() {
         navigator.clipboard.writeText(value).then(() => {
-            copied = true;
+            copied = !copied;
         }).catch(err => {
             console.error("Failed to copy text: ", err);
         });
