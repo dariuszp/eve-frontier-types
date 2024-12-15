@@ -2,6 +2,7 @@
     import type {Item} from "$lib/typesSearch/extractFilters";
     import Blockchain from "$lib/types/blockchain";
     import IdInput from "$lib/components/TypesSearch/components/IdInput.svelte";
+    import Button from "$lib/components/Button/Button.svelte";
 
     const {
         selectedGroups,
@@ -29,20 +30,16 @@
         )
     }
 
-    function highlightMultipleKeywords(text: string, keywords: string) {
-        if (!keywords || keywords.length === 0) return text;
-
-        // Join keywords into a single regex pattern, escaping special characters
-        const regex = new RegExp(`(${keywords.map(k => k.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')).join('|')})`, 'gi');
-
-        // Replace matches with <mark> tags
-        return text.replace(regex, '<mark>$1</mark>');
+    function clearTextFilter() {
+        textFilter = '';
     }
 </script>
 
 <div>
     <div class="search">
-        Search: <input type="search" bind:value={textFilter}>
+        Search:
+        <input type="search" bind:value={textFilter}>
+        <Button active={textFilter.trim().length > 0} onclick={clearTextFilter}>&times;</Button>
     </div>
 
     <div class="items">
@@ -63,6 +60,15 @@
 </div>
 
 <style>
+    .search {
+        font-size: 1.5rem;
+        display: grid;
+        grid-template-columns: max-content 1fr max-content;
+        gap: 16px;
+        padding-bottom: 8px;
+        padding-right: 8px;
+    }
+
     .items {
         display: grid;
         grid-template-columns: 1fr 1fr;
@@ -80,14 +86,5 @@
         background: #efefef;
         border: 1px #222;
         padding: 8px;
-    }
-
-    .search {
-        font-size: 1.5rem;
-        display: grid;
-        grid-template-columns: max-content 1fr;
-        gap: 16px;
-        padding-bottom: 8px;
-        padding-right: 8px;
     }
 </style>
