@@ -1,3 +1,7 @@
+# EVE Frontier type browser
+
+https://dariuszp.github.io/eve-frontier-types/
+
 # sv
 
 Everything you need to build a Svelte project, powered by [`sv`](https://github.com/sveltejs/cli).
