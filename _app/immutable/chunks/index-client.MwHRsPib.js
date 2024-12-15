@@ -1,0 +1,1 @@
+import{d as t,l as o,m as a,b as c,e as u}from"./utils.BlhD59TK.js";function f(n){t===null&&o(),a&&t.l!==null?l(t).m.push(n):c(()=>{const e=u(n);if(typeof e=="function")return e})}function l(n){var e=n.l;return e.u??(e.u={a:[],b:[],m:[]})}export{f as o};
